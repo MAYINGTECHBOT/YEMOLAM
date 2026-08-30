@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customers — Yemolam Admin</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <span class="logo">Yemolam<span style="color:var(--rust);">.</span></span>
+    <nav class="admin-nav">
+      <a href="dashboard.html">📊 Overview</a>
+      <a href="products.html">👟 Products</a>
+      <a href="inventory.html">📦 Inventory</a>
+      <a href="orders.html">🧾 Orders</a>
+      <a href="customers.html" class="active">👤 Customers</a>
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="../index.html">↩ Back to Store</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-topbar"><h2>Customers</h2></div>
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th><th>Total Spent</th><th>Last Order</th></tr></thead>
+      <tbody id="customers-table-body"></tbody>
+    </table>
+  </main>
+</div>
+<script src="../js/products-data.js"></script>
+<script src="../js/admin-store.js"></script>
+<script src="../js/admin-data.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

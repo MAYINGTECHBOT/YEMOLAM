@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Yemolam Admin</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <span class="logo">Yemolam<span style="color:var(--rust);">.</span></span>
+    <nav class="admin-nav">
+      <a href="dashboard.html">📊 Overview</a>
+      <a href="products.html">👟 Products</a>
+      <a href="inventory.html">📦 Inventory</a>
+      <a href="orders.html">🧾 Orders</a>
+      <a href="customers.html">👤 Customers</a>
+      <a href="settings.html" class="active">⚙️ Settings</a>
+      <a href="../index.html">↩ Back to Store</a>
+    </nav>
+  </aside>
+  <main class="admin-main" style="max-width:640px;">
+    <div class="admin-topbar"><h2>Store Settings</h2></div>
+
+    <h3 style="margin-bottom:14px; font-size:1rem;">Delivery Fees</h3>
+    <div class="field"><label>Lagos (₦)</label><input type="number" id="fee-lagos" value="3000"></div>
+    <div class="field"><label>Abuja (₦)</label><input type="number" id="fee-abuja" value="5000"></div>
+    <div class="field"><label>Other States (₦)</label><input type="number" id="fee-other" value="7000"></div>
+
+    <h3 style="margin:26px 0 14px; font-size:1rem;">WhatsApp Contact Number</h3>
+    <div class="field"><label>Number (with country code, digits only)</label><input type="text" id="wa-number" value="2348169321538"></div>
+
+    <h3 style="margin:26px 0 14px; font-size:1rem;">Payment Mode</h3>
+    <div class="field">
+      <label>Paystack Environment</label>
+      <select id="paystack-mode"><option>Test Mode</option><option>Live Mode</option></select>
+    </div>
+
+    <button class="btn btn-primary" onclick="saveStoreSettings()">Save Settings</button>
+  </main>
+</div>
+<script src="../js/products-data.js"></script>
+<script src="../js/admin-store.js"></script>
+<script>
+  const SETTINGS_KEY = "yemolam_settings";
+  function loadStoreSettingsIntoForm(){
+    try {
+      const s = JSON.parse(localStorage.getItem(SETTINGS_KEY));
+      if (!s) return;
+      if (s.deliveryFees){
+        document.querySelector("#fee-lagos").value = s.deliveryFees.Lagos;
+        document.querySelector("#fee-abuja").value = s.deliveryFees.Abuja;
+        document.querySelector("#fee-other").value = s.deliveryFees.Other;
+      }
+      if (s.whatsappNumber) document.querySelector("#wa-number").value = s.whatsappNumber;
+      if (s.paystackMode) document.querySelector("#paystack-mode").value = s.paystackMode;
+    } catch {}
+  }
+  function saveStoreSettings(){
+    const settings = {
+      deliveryFees: {
+        Lagos: Number(document.querySelector("#fee-lagos").value) || 0,
+        Abuja: Number(document.querySelector("#fee-abuja").value) || 0,
+        Other: Number(document.querySelector("#fee-other").value) || 0
+      },
+      whatsappNumber: document.querySelector("#wa-number").value.replace(/\D/g, ""),
+      paystackMode: document.querySelector("#paystack-mode").value
+    };
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    alert("Settings saved. These now apply across the storefront (delivery fees, WhatsApp button) immediately.");
+  }
+  loadStoreSettingsIntoForm();
+</script>
+</body>
+</html>

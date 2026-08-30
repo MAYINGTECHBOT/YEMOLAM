@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Yemolam Shoes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="logo">Yemolam<span>.</span></a>
+  </nav>
+</header>
+
+<div class="success-box">
+  <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+  <h2>ORDER CONFIRMED 🎉</h2>
+  <p style="margin-top:10px;">Thank you for your purchase. A confirmation has been sent to your email.</p>
+
+  <div class="order-card" id="order-details">
+    <div class="summary-row"><span>Order Number</span><span id="order-ref">—</span></div>
+    <div class="summary-row"><span>Total</span><span id="order-total">—</span></div>
+    <div class="summary-row"><span>Payment</span><span style="color:var(--success); font-weight:600;">Successful</span></div>
+    <div class="summary-row"><span>Delivery</span><span>Processing</span></div>
+  </div>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+    <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+    <a data-whatsapp href="#" target="_blank" class="btn btn-outline">Contact Us</a>
+  </div>
+</div>
+
+<script src="js/products-data.js"></script>
+<script src="js/admin-store.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const ref = params.get("ref") || "—";
+  document.querySelector("#order-ref").textContent = "#" + ref.replace("DEMO-","");
+  try {
+    const saved = JSON.parse(localStorage.getItem("yemolam_last_order"));
+    if (saved) document.querySelector("#order-total").textContent = formatNaira(saved.total_amount);
+  } catch {}
+</script>
+</body>
+</html>

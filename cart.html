@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — Yemolam Shoes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="logo">Yemolam<span>.</span></a>
+    <div class="nav-links"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="nav-icons">
+      <a class="icon-btn" href="shop.html" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+      <a class="icon-btn" href="admin/login.html" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+</header>
+
+<div class="breadcrumb"><a href="index.html">Home</a> / <span>Cart</span></div>
+
+<section class="section container">
+  <h2 style="margin-bottom:30px;">Your Cart</h2>
+  <div class="cart-layout">
+    <div id="cart-list"></div>
+    <div class="summary-card" id="cart-summary">
+      <h3 style="margin-bottom:18px;">Order Summary</h3>
+      <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">₦0</span></div>
+      <div class="summary-row"><span>Delivery</span><span id="sum-delivery">₦0</span></div>
+      <div class="summary-total"><span>Total</span><span id="sum-total">₦0</span></div>
+      <a href="checkout.html" class="btn btn-primary btn-block" style="margin-top:20px;">CHECKOUT</a>
+      <a href="shop.html" class="btn btn-ghost btn-block" style="margin-top:10px; text-align:center;">← Continue Shopping</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="color:#fff;">Yemolam<span style="color:var(--rust);">.</span></a></div>
+    <div><h5>Shop</h5><ul><li><a href="shop.html">All Products</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Yemolam Shoes. All rights reserved.</span></div>
+</footer>
+
+<a class="wa-float" data-whatsapp href="#" target="_blank" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg></a>
+
+<script src="js/products-data.js"></script>
+<script src="js/admin-store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

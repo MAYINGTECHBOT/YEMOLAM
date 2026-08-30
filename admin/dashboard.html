@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Yemolam Admin</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <span class="logo">Yemolam<span style="color:var(--rust);">.</span></span>
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="active">📊 Overview</a>
+      <a href="products.html">👟 Products</a>
+      <a href="inventory.html">📦 Inventory</a>
+      <a href="orders.html">🧾 Orders</a>
+      <a href="customers.html">👤 Customers</a>
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="../index.html">↩ Back to Store</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h2>Store Overview</h2>
+      <span style="color:#8a7d70; font-size:.9rem;">Welcome back, Admin</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="label">Total Sales</div><div class="value" id="stat-total-sales">₦0</div></div>
+      <div class="stat-card"><div class="label">Today's Sales</div><div class="value" id="stat-today-sales">₦0</div></div>
+      <div class="stat-card"><div class="label">Total Orders</div><div class="value" id="stat-orders">0</div></div>
+      <div class="stat-card"><div class="label">Pending Orders</div><div class="value" id="stat-pending">0</div></div>
+      <div class="stat-card"><div class="label">Total Products</div><div class="value" id="stat-products">0</div></div>
+      <div class="stat-card"><div class="label">Low Stock Items</div><div class="value" id="stat-lowstock">0</div></div>
+    </div>
+
+    <h3 style="margin-bottom:14px;">Recent Orders</h3>
+    <table class="data-table">
+      <thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Amount</th><th>Payment</th><th>Status</th></tr></thead>
+      <tbody id="recent-orders-body"></tbody>
+    </table>
+  </main>
+</div>
+<script src="../js/products-data.js"></script>
+<script src="../js/admin-store.js"></script>
+<script src="../js/admin-data.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

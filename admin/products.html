@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Yemolam Admin</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <span class="logo">Yemolam<span style="color:var(--rust);">.</span></span>
+    <nav class="admin-nav">
+      <a href="dashboard.html">📊 Overview</a>
+      <a href="products.html" class="active">👟 Products</a>
+      <a href="inventory.html">📦 Inventory</a>
+      <a href="orders.html">🧾 Orders</a>
+      <a href="customers.html">👤 Customers</a>
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="../index.html">↩ Back to Store</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h2>Products</h2>
+      <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Active</th><th>Actions</th></tr></thead>
+      <tbody id="products-table-body"></tbody>
+    </table>
+  </main>
+</div>
+
+<!-- Add / Edit Product Modal -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modal-title">Add Product</h3>
+      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+    </div>
+    <form id="product-form">
+      <input type="hidden" name="editId">
+      <div class="form-grid">
+        <div class="field"><label>Product Name</label><input type="text" name="name" required></div>
+        <div class="field"><label>Category</label>
+          <select name="category" required>
+            <option>Sneakers</option><option>Casual Shoes</option><option>Formal Shoes</option>
+            <option>Boots</option><option>Sandals</option><option>Running Shoes</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Description</label><textarea name="description" rows="3"></textarea></div>
+      <div class="form-grid">
+        <div class="field"><label>Price (₦)</label><input type="number" name="price" min="0" required></div>
+        <div class="field"><label>Compare-at / Discount Price (₦, optional)</label><input type="number" name="comparePrice" min="0"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Brand</label><input type="text" name="brand" value="Yemolam"></div>
+        <div class="field"><label>Color</label><input type="text" name="color"></div>
+      </div>
+
+      <div class="field">
+        <label>Product Images (first image = main photo)</label>
+        <input type="file" name="images" accept="image/*" multiple>
+        <div id="image-preview-row" style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;"></div>
+      </div>
+
+      <div class="field">
+        <label>Sizes &amp; Stock</label>
+        <div id="size-stock-grid" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+      </div>
+
+      <div class="field" style="display:flex; gap:22px;">
+        <label class="filter-opt"><input type="checkbox" name="featured"> Featured</label>
+        <label class="filter-opt"><input type="checkbox" name="bestSeller"> Best Seller</label>
+        <label class="filter-opt"><input type="checkbox" name="active" checked> Active</label>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:10px;">
+        <button type="submit" class="btn btn-primary">Save Product</button>
+        <button type="button" class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/products-data.js"></script>
+<script src="../js/admin-store.js"></script>
+<script src="../js/admin-data.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/admin-products-form.js"></script>
+</body>
+</html>

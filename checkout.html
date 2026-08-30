@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Yemolam Shoes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="logo">Yemolam<span>.</span></a>
+    <div class="nav-links"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="nav-icons">
+      <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Cart</a> / <span>Checkout</span></div>
+
+<section class="section container">
+  <h2 style="margin-bottom:30px;">Checkout</h2>
+  <div class="cart-layout">
+    <form id="checkout-form" novalidate>
+      <h3 style="margin-bottom:16px; font-size:1.1rem;">Customer Details</h3>
+      <div class="form-grid">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="fullName" placeholder="e.g. Ada Okafor">
+          <span class="field-error" data-error="fullName">Please enter your full name.</span>
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="0801 234 5678">
+          <span class="field-error" data-error="phone">Please enter your phone number.</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="you@email.com">
+        <span class="field-error" data-error="email">Please enter a valid email.</span>
+      </div>
+
+      <h3 style="margin:26px 0 16px; font-size:1.1rem;">Delivery Details</h3>
+      <div class="form-grid">
+        <div class="field">
+          <label>State</label>
+          <select name="state" id="state">
+            <option value="Lagos">Lagos — ₦3,000</option>
+            <option value="Abuja">Abuja — ₦5,000</option>
+            <option value="Other">Other States — ₦7,000</option>
+          </select>
+          <span class="field-error" data-error="state">Please select a state.</span>
+        </div>
+        <div class="field">
+          <label>City</label>
+          <input type="text" name="city" placeholder="e.g. Ikeja">
+          <span class="field-error" data-error="city">Please enter your city.</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Delivery Address</label>
+        <textarea name="address" rows="3" placeholder="Street, house number, landmark"></textarea>
+        <span class="field-error" data-error="address">Please enter your delivery address.</span>
+      </div>
+      <div class="field">
+        <label>Additional Delivery Instructions (optional)</label>
+        <textarea name="notes" rows="2" placeholder="e.g. Call before arriving"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:10px;">PAY NOW</button>
+      <p style="font-size:.78rem; color:#8a7d70; text-align:center; margin-top:12px;">
+        Payments are securely processed by Paystack. Yemolam Shoes never sees your card details.
+      </p>
+    </form>
+
+    <div class="summary-card">
+      <h3 style="margin-bottom:18px;">Order Summary</h3>
+      <div id="checkout-items" style="margin-bottom:14px;"></div>
+      <div class="summary-row"><span>Subtotal</span><span id="co-subtotal">₦0</span></div>
+      <div class="summary-row"><span>Delivery</span><span id="co-delivery">₦0</span></div>
+      <div class="summary-total"><span>Total</span><span id="co-total">₦0</span></div>
+    </div>
+  </div>
+</section>
+
+<a class="wa-float" data-whatsapp href="#" target="_blank" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg></a>
+
+<script src="js/products-data.js"></script>
+<script src="js/admin-store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

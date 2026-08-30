@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Yemolam Shoes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="logo">Yemolam<span>.</span></a>
+    <div class="nav-links"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html" class="active">Contact</a></div>
+    <div class="nav-icons"><a class="icon-btn" href="cart.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+</header>
+
+<section class="section container" style="max-width:640px;">
+  <div class="section-head"><div><span class="eyebrow">We're Here to Help</span><h2>Contact Us</h2></div></div>
+  <p style="margin-bottom:26px;">Questions about sizing, an order, or delivery? Reach us on WhatsApp for the fastest response, or send a message below.</p>
+
+  <form id="contact-form">
+    <div class="field"><label>Full Name</label><input type="text" required></div>
+    <div class="field"><label>Email Address</label><input type="email" required></div>
+    <div class="field"><label>Message</label><textarea rows="4" required></textarea></div>
+    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+  </form>
+
+  <div style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap;">
+    <a data-whatsapp href="#" target="_blank" class="btn btn-outline">Chat on WhatsApp</a>
+    <a href="mailto:hello@yemolamshoes.com" class="btn btn-ghost">hello@yemolamshoes.com</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="color:#fff;">Yemolam<span style="color:var(--rust);">.</span></a></div>
+    <div><h5>Shop</h5><ul><li><a href="shop.html">All Products</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Yemolam Shoes. All rights reserved.</span></div>
+</footer>
+<a class="wa-float" data-whatsapp href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg></a>
+<script src="js/products-data.js"></script>
+<script src="js/admin-store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script>
+document.querySelector("#contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  showToast("Message sent! We'll get back to you shortly.");
+  e.target.reset();
+});
+</script>
+</body>
+</html>

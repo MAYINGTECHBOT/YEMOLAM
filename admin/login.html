@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Yemolam Shoes</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+<div class="login-shell">
+  <div class="login-card">
+    <span class="logo">Yemolam<span style="color:var(--rust);">.</span></span>
+    <p class="login-sub" style="color:#8a7d70;">Sign in to manage your store</p>
+    <form id="login-form">
+      <div class="field"><label>Email</label><input type="email" name="email" placeholder="admin@yemolamshoes.com" required></div>
+      <div class="field"><label>Password</label><input type="password" name="password" placeholder="••••••••" required></div>
+      <span class="field-error" id="login-error">Invalid email or password.</span>
+      <button class="btn btn-primary btn-block" style="margin-top:6px;">LOGIN</button>
+    </form>
+    <p style="text-align:center; font-size:.8rem; margin-top:18px; color:#8a7d70;">
+      Protected by Supabase Authentication. <br> Contact your developer if you've lost access.
+    </p>
+  </div>
+</div>
+<script src="../js/auth.js"></script>
+</body>
+</html>

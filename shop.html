@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All Shoes — Yemolam Shoes</title>
+<meta name="description" content="Browse the full Yemolam Shoes collection — sneakers, boots, sandals, formal and casual shoes. Filter by size, category, price and colour.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="logo">Yemolam<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <a class="icon-btn" href="shop.html" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+      <a class="icon-btn" href="admin/login.html" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<div class="breadcrumb"><a href="index.html">Home</a> / <span>Shop</span></div>
+
+<section class="section container">
+  <div class="section-head">
+    <div><span class="eyebrow">Full Collection</span><h2>Shop All Shoes</h2></div>
+    <span id="shop-count" style="color:#8a7d70; font-size:.9rem;"></span>
+  </div>
+
+  <div class="shop-toolbar">
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7d70" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="shop-search" placeholder="Search black sneakers, size 42...">
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn btn-outline btn-sm mobile-filter-toggle">Filters</button>
+      <select id="sort-select" class="select-sort">
+        <option value="newest">Newest</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="popular">Best Selling</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="shop-layout">
+    <aside class="filters">
+      <div class="filter-group">
+        <h5>Category</h5>
+        <label class="filter-opt"><input type="radio" name="cat" value="Sneakers" data-filter-category> Sneakers</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Casual Shoes" data-filter-category> Casual Shoes</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Formal Shoes" data-filter-category> Formal Shoes</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Boots" data-filter-category> Boots</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Sandals" data-filter-category> Sandals</label>
+        <label class="filter-opt"><input type="radio" name="cat" value="Running Shoes" data-filter-category> Running Shoes</label>
+      </div>
+      <div class="filter-group">
+        <h5>Size</h5>
+        <label class="filter-opt"><input type="radio" name="size" value="39" data-filter-size> 39</label>
+        <label class="filter-opt"><input type="radio" name="size" value="40" data-filter-size> 40</label>
+        <label class="filter-opt"><input type="radio" name="size" value="41" data-filter-size> 41</label>
+        <label class="filter-opt"><input type="radio" name="size" value="42" data-filter-size> 42</label>
+        <label class="filter-opt"><input type="radio" name="size" value="43" data-filter-size> 43</label>
+        <label class="filter-opt"><input type="radio" name="size" value="44" data-filter-size> 44</label>
+      </div>
+      <div class="filter-group">
+        <h5>Max Price: <span id="price-range-label">₦120,000</span></h5>
+        <input type="range" id="price-range" min="20000" max="120000" step="5000" value="120000" style="width:100%;">
+      </div>
+    </aside>
+
+    <div>
+      <div class="grid" id="shop-grid"></div>
+      <div class="empty-state" id="shop-empty" style="display:none;">
+        <h3>NO PRODUCTS FOUND</h3>
+        <p>Try searching for another shoe, or clear your filters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="logo" style="color:#fff;">Yemolam<span style="color:var(--rust);">.</span></a>
+      <p style="margin-top:14px; max-width:280px; color:#a99d90;">Footwear for every step. Premium shoes for Nigeria and beyond.</p>
+    </div>
+    <div><h5>Shop</h5><ul><li><a href="shop.html">All Products</a></li></ul></div>
+    <div><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Yemolam Shoes. All rights reserved.</span></div>
+</footer>
+
+<a class="wa-float" data-whatsapp href="#" target="_blank" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg></a>
+
+<script src="js/products-data.js"></script>
+<script src="js/admin-store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>
