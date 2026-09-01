@@ -17,6 +17,34 @@
 
 const PAYSTACK_PUBLIC_KEY = "pk_test_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY";
 
+// -----------------------------------------------------------------
+// LAUNCH SWITCH: payments are not live yet. Flip this to true once
+// Paystack + Supabase are connected and you're ready to accept real
+// orders. Nothing below this needs to change when you do — the
+// Paystack/backend flow is already wired up and untouched.
+// -----------------------------------------------------------------
+const CHECKOUT_ENABLED = false;
+
+function showComingSoonNotice(form){
+  const payBtn = form.querySelector("[type=submit]");
+  payBtn.disabled = true;
+  payBtn.textContent = "AVAILABLE SOON";
+
+  let notice = form.querySelector("#checkout-coming-soon");
+  if (!notice){
+    notice = document.createElement("div");
+    notice.id = "checkout-coming-soon";
+    notice.style.cssText = "margin-top:14px;padding:14px 16px;border:1px solid var(--rust,#b8562f);border-radius:8px;background:rgba(184,86,47,0.08);color:inherit;font-size:0.95rem;line-height:1.5;";
+    notice.innerHTML = `
+      <strong>Online payment is coming soon.</strong><br>
+      We're not accepting card payments on the site just yet. In the meantime, feel free to
+      share the site link with friends and check back soon — or reach out to us on WhatsApp
+      to place your order directly.`;
+    payBtn.insertAdjacentElement("afterend", notice);
+  }
+  if (typeof showToast === "function") showToast("Online payment is coming soon — check back shortly!");
+}
+
 function renderCheckoutSummary(){
   const cart = getCart();
   const container = document.querySelector("#checkout-items");
@@ -66,6 +94,11 @@ async function handleCheckoutSubmit(e){
   e.preventDefault();
   const form = e.target;
   if (!validateCheckoutForm(form)) { showToast("Please fill in all required fields."); return; }
+
+  if (!CHECKOUT_ENABLED){
+    showComingSoonNotice(form);
+    return;
+  }
 
   const payBtn = form.querySelector("[type=submit]");
   payBtn.disabled = true;
@@ -124,5 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const stateSelect = document.querySelector("#state");
   if (stateSelect) stateSelect.addEventListener("change", updateCheckoutTotals);
   const form = document.querySelector("#checkout-form");
-  if (form) form.addEventListener("submit", handleCheckoutSubmit);
+  if (form){
+    form.addEventListener("submit", handleCheckoutSubmit);
+    if (!CHECKOUT_ENABLED) showComingSoonNotice(form);
+  }
 });
