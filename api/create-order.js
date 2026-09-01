@@ -18,13 +18,30 @@
 
 const { createClient } = require("@supabase/supabase-js");
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Mirror of CHECKOUT_ENABLED in js/checkout.js. Flip to true once
+// Paystack + Supabase keys are set in Railway and you're ready to
+// accept real orders.
+const CHECKOUT_ENABLED_ON_BACKEND = false;
+
+let supabase = null;
+function getSupabase() {
+  if (!supabase) {
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      throw new Error("Supabase is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
+    }
+    supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+  }
+  return supabase;
+}
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+  // Checkout is not live yet — see CHECKOUT_ENABLED in js/checkout.js.
+  // This keeps the endpoint from erroring the server while payments are off.
+  if (!CHECKOUT_ENABLED_ON_BACKEND) {
+    return res.status(503).json({ error: "Online payment is coming soon. Checkout is not yet available." });
+  }
 
   try {
     const {
@@ -39,7 +56,7 @@ module.exports = async (req, res) => {
 
     // 1. Re-validate stock atomically for every item (prevents overselling).
     for (const item of items){
-      const { data: inv, error } = await supabase
+      const { data: inv, error } = await getSupabase()
         .from("inventory")
         .select("stock")
         .eq("product_id", item.productId)
@@ -52,7 +69,7 @@ module.exports = async (req, res) => {
     }
 
     // 2. Create the order (status: pending, payment_status: pending).
-    const { data: order, error: orderError } = await supabase
+    const { data: order, error: orderError } = await getSupabase()
       .from("orders")
       .insert({
         customer_name, customer_email, customer_phone,
@@ -70,7 +87,7 @@ module.exports = async (req, res) => {
       order_id: order.id, product_id: i.productId, product_name: i.name,
       size: i.size, quantity: i.quantity, price: i.price, subtotal: i.price * i.quantity
     }));
-    await supabase.from("order_items").insert(orderItems);
+    await getSupabase().from("order_items").insert(orderItems);
 
     // 4. Initialize Paystack transaction (SECRET key stays server-side only).
     const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
@@ -90,7 +107,7 @@ module.exports = async (req, res) => {
 
     if (!paystackData.status) return res.status(502).json({ error: "Could not start payment." });
 
-    await supabase.from("orders").update({ payment_reference: paystackData.data.reference }).eq("id", order.id);
+    await getSupabase().from("orders").update({ payment_reference: paystackData.data.reference }).eq("id", order.id);
 
     return res.status(200).json({
       authorization_url: paystackData.data.authorization_url,
